@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A Clear Sight Finance learning module with audio narration, a read-along transcript and a short knowledge check.">
+  <meta name="description" content="A Clear Sight Finance learning module with audio narration that highlights each sentence as it is read, and a short knowledge check.">
   <!-- app.js will replace this with the module's name, e.g. "Module 1: Spotting the Scam – Clear Sight Finance" -->
   <title>Learning Module – Clear Sight Finance</title>
 
@@ -66,7 +66,7 @@
     <!-- B. Audio narration (controlled by player.js using the browser's speech feature) -->
     <section class="module-section audio-player" aria-labelledby="audio-heading">
       <h2 id="audio-heading">Listen to the lesson</h2>
-      <p class="section-intro">Press Play to hear the lesson read aloud. The sentence being read is highlighted in the transcript below.</p>
+      <p class="section-intro">Press Play to hear the lesson read aloud. The sentence being read is highlighted in the lesson below.</p>
 
       <div class="audio-controls">
         <button type="button" id="audio-play" class="audio-button" disabled>Play</button>
@@ -89,26 +89,19 @@
     </section>
 
     <!-- C. Lesson content (inserted by app.js from the module's JSON file).
-         Expected content: <h3> subheadings, <p> paragraphs, <ul> lists and
-         safety tips such as:
-         <div class="safety-tip"><p><strong>Safety tip:</strong> …</p></div> -->
+         This is also what the audio reads aloud. Each heading and sentence
+         is marked for highlighting, numbered in reading order:
+         <h3 class="lesson-sentence" data-sentence="0">Heading</h3>
+         <p><span class="lesson-sentence" data-sentence="1">First sentence.</span> …</p>
+         <div class="safety-tip"><h4 class="safety-tip-heading …">Safety tip</h4><ul>…</ul></div>
+         player.js adds the class "is-current" to the item being spoken.
+         No aria-live here, so screen readers don't re-read it on every change. -->
     <section class="module-section lesson" aria-labelledby="lesson-heading">
       <h2 id="lesson-heading">What you'll learn</h2>
       <div id="lesson-content" class="lesson-content"></div>
     </section>
 
-    <!-- D. Read-along transcript (sentences inserted by app.js or player.js).
-         Each sentence goes in its own span so player.js can highlight it:
-         <span class="transcript-sentence" data-sentence="0">First sentence.</span>
-         The sentence being spoken also gets the class "is-current".
-         No aria-live here, so screen readers don't re-read it on every change. -->
-    <section class="module-section transcript" aria-labelledby="transcript-heading">
-      <h2 id="transcript-heading">Read along</h2>
-      <p class="section-intro">You can read the full lesson here, with or without the audio. While the lesson is playing, the sentence being read is highlighted.</p>
-      <div id="transcript-content" class="transcript-content"></div>
-    </section>
-
-    <!-- E. Knowledge check (questions inserted by quiz.js).
+    <!-- D. Knowledge check (questions inserted by quiz.js).
          Each question will be a radio-button group:
          <fieldset class="quiz-question">
            <legend>Question text</legend>
@@ -129,7 +122,7 @@
       <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
     </section>
 
-    <!-- F. Module navigation (app.js sets the Previous/Next destinations
+    <!-- E. Module navigation (app.js sets the Previous/Next destinations
          and shows them only when that module exists) -->
     <nav class="module-nav" aria-label="Module navigation">
       <a id="previous-module" class="module-nav-link module-nav-previous" hidden>Previous Module</a>
