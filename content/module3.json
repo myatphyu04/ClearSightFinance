@@ -1,0 +1,93 @@
+{
+  "id": 3,
+  "title": "What to Do If It Happens",
+  "introduction": "In this module, you will learn what to do if you think you have been scammed, including how to contact your bank, secure your accounts and report what happened.",
+  "sections": [
+    {
+      "heading": "Stop and check what happened",
+      "paragraphs": [
+        "If you think you have responded to a scam, try to stay calm. Stop replying to the person, do not send any more money and do not share any more information, even if they put pressure on you.",
+        "Then take a moment to think about what you may have shared, such as your card details, a password or a security code. Knowing this helps you decide what to do next. Acting quickly can make it easier to protect your accounts."
+      ],
+      "tips": [
+        "It is fine to end a call or stop replying straight away. You do not need to explain yourself to someone you think is a scammer."
+      ]
+    },
+    {
+      "heading": "Contact your bank or payment provider",
+      "paragraphs": [
+        "If you have sent money, shared your banking details or noticed a payment you do not recognise, contact your bank as soon as you can. Use its official app, its official website or the phone number on the back of your card. Do not call a number given in a suspicious message, because it could lead straight back to the scammer.",
+        "Your bank can help protect your account, for example by blocking your card or watching for unusual payments. It can also look into the payment and explain what might happen next. Getting money back is not always possible, but telling your bank quickly gives you the best chance. Follow the advice your bank gives you."
+      ],
+      "tips": [
+        "Before you get in touch, it helps to have the date, the amount and the name of any suspicious payment ready, if you know them.",
+        "A payment provider is a company that handles payments for you, such as a credit card company or an online payment service. If you paid through one, contact them as well."
+      ]
+    },
+    {
+      "heading": "Secure your accounts and devices",
+      "paragraphs": [
+        "If you shared a password, or think someone has got into one of your accounts, change the password as soon as possible. Use a device you trust and go to the official website or app yourself, rather than following a link. If you use the same password anywhere else, change it there too. Where you can, turn on two-factor authentication, which adds an extra security check when you sign in.",
+        "Look through your recent account activity for anything you do not recognise, such as payments, sign-ins or changed details. If something looks wrong, contact your bank or the organisation that runs the account."
+      ],
+      "tips": [
+        "If you think your phone or computer has been affected, for example after installing an app a scammer asked you to, ask a trusted technical support provider for help before using it for banking or shopping."
+      ]
+    },
+    {
+      "heading": "Report the scam and get support",
+      "paragraphs": [
+        "Reporting a scam helps the police and other organisations investigate it and warn other people. Before you delete anything, keep a record of useful information, such as suspicious messages, phone numbers, payment details and dates.",
+        "You can report suspected scams, including suspicious messages, calls or adverts, to the police, an official fraud reporting service or the relevant service provider. Always use official websites or contact details you have found yourself, rather than links provided in suspicious messages. Reporting does not always mean your money will be returned, but it is still worth doing."
+      ],
+      "tips": [
+        "Do not delete scam messages until you have noted the details you need for your report.",
+        "Scams can happen to anyone, however careful they are. Talking to a family member, friend or someone else you trust can help you feel less alone and decide what to do next."
+      ]
+    }
+  ],
+  "transcript": [
+    "Welcome to Module 3, What to Do If It Happens.",
+    "If you think you have responded to a scam, try to stay calm.",
+    "Stop replying to the person, and do not send any more money or information.",
+    "Think about what you may have shared, such as card details, a password or a security code.",
+    "Acting quickly can help protect your accounts.",
+    "If you have sent money or shared banking details, contact your bank as soon as you can.",
+    "Use your bank's official app, its official website or the phone number on the back of your card.",
+    "Do not call a number given in a suspicious message, because it could lead back to the scammer.",
+    "It helps to have the date and amount of any suspicious payment ready.",
+    "Your bank can help protect your account and explain what might happen next.",
+    "Getting money back is not always possible, but telling your bank quickly gives you the best chance.",
+    "If you shared a password, change it as soon as possible using a device you trust and the official website or app.",
+    "Turn on two-factor authentication where you can, and check your accounts for anything you do not recognise.",
+    "If you think your phone or computer has been affected, ask a trusted technical support provider for help before using it for banking.",
+    "Reporting a scam helps the police and other organisations investigate it and warn other people.",
+    "Before deleting anything, keep a record of suspicious messages, payment details and dates.",
+    "In England, Wales and Northern Ireland, you can report fraud to the national police service called Report Fraud.",
+    "In Scotland, you can report fraud to Police Scotland by calling one oh one.",
+    "You can also forward scam text messages to seven seven two six.",
+    "Scams can happen to anyone, and asking someone you trust for help is a sensible step."
+  ],
+  "quiz": [
+    {
+      "question": "You notice a payment from your bank account that you do not recognise. What should you do first?",
+      "options": [
+        "Contact your bank straight away using its official app or the number on the back of your card.",
+        "Wait a few weeks to see whether the money is returned on its own.",
+        "Call the phone number in a text message that warned you about the payment."
+      ],
+      "correctIndex": 0,
+      "explanation": "Contacting your bank quickly, using contact details you trust, gives it the best chance to protect your account and look into the payment. A number in an unexpected message could belong to a scammer."
+    },
+    {
+      "question": "You think you may have told a scammer the password for your online banking. What is a sensible next step?",
+      "options": [
+        "Keep using the account as normal and hope nothing happens.",
+        "On a device you trust, change the password through the official website or app, and contact your bank.",
+        "Click the link in the scammer's message to change your password."
+      ],
+      "correctIndex": 1,
+      "explanation": "Changing your password through the official website or app on a trusted device stops the old password from working. Your bank can also check for unusual activity and help protect your account."
+    }
+  ]
+}
