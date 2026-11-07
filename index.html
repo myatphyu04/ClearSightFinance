@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Clear Sight Finance is an accessible, audio-friendly guide to spotting scams, protecting your money and knowing what to do if something goes wrong.">
+  <title>Clear Sight Finance – Financial Safety Guide</title>
+
+  <!-- Stylesheets: base layout first, then colour themes -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/themes.css">
+</head>
+<body>
+
+  <!-- Lets keyboard and screen reader users jump past the header and toolbar -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ========== Header and navigation ========== -->
+  <header class="site-header">
+    <div class="site-branding">
+      <p class="site-title">Clear Sight Finance</p>
+      <p class="site-tagline">Financial Safety Guide</p>
+    </div>
+
+    <nav class="main-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
+        <li><a href="module.html?m=1" class="nav-link" aria-label="Module 1: Spotting the Scam">Module 1</a></li>
+        <li><a href="module.html?m=2" class="nav-link" aria-label="Module 2: Protecting Yourself Day to Day">Module 2</a></li>
+        <li><a href="module.html?m=3" class="nav-link" aria-label="Module 3: What to Do If It Happens">Module 3</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ========== Accessibility toolbar ========== -->
+  <section class="accessibility-toolbar" aria-label="Accessibility settings">
+    <div class="toolbar-group">
+      <button type="button" id="contrast-toggle" class="toolbar-button" aria-pressed="false">High Contrast</button>
+    </div>
+
+    <div class="toolbar-group" role="group" aria-labelledby="text-size-label">
+      <span id="text-size-label" class="toolbar-label">Text size</span>
+      <button type="button" class="toolbar-button text-size-button active" data-size="normal" aria-label="Normal text size" aria-pressed="true">A</button>
+      <button type="button" class="toolbar-button text-size-button" data-size="large" aria-label="Large text size" aria-pressed="false">A+</button>
+      <button type="button" class="toolbar-button text-size-button" data-size="extra-large" aria-label="Extra-large text size" aria-pressed="false">A++</button>
+    </div>
+  </section>
+
+  <!-- ========== Main content ========== -->
+  <main id="main-content">
+
+    <!-- Welcome -->
+    <section class="welcome" aria-labelledby="welcome-heading">
+      <h1 id="welcome-heading">Welcome to Clear Sight Finance</h1>
+      <p class="welcome-intro">Clear Sight Finance is a friendly guide to keeping your money safe. It is designed for people with sight loss and for anyone who prefers to learn by listening.</p>
+      <p>Scams are becoming more convincing, and anyone can be targeted. Knowing the warning signs, and what to do if something goes wrong, can help you protect your money and feel more confident.</p>
+      <p>The guide is split into three modules. Each one includes:</p>
+      <ul class="welcome-list">
+        <li>an audio lesson you can listen to</li>
+        <li>a written transcript you can read</li>
+        <li>a few quick questions to check what you have learned</li>
+      </ul>
+      <p>There is no rush. You can listen, read or do both, and come back to any module whenever you like.</p>
+    </section>
+
+    <!-- Learning modules -->
+    <section class="modules" aria-labelledby="modules-heading">
+      <h2 id="modules-heading">Learning modules</h2>
+      <p>You can work through the modules in order, or start with the topic that matters most to you.</p>
+
+      <ul class="module-list">
+        <li>
+          <article class="module-card">
+            <h3 class="module-heading">
+              <span class="module-number">Module 1</span>
+              <span class="module-title">Spotting the Scam</span>
+            </h3>
+            <p class="module-description">Learn the warning signs of a scam: suspicious messages, pressure to act quickly, people pretending to be someone you trust, and unexpected requests for your details or money.</p>
+            <a href="module.html?m=1" class="module-link" aria-label="Start learning Module 1: Spotting the Scam">Start Learning</a>
+          </article>
+        </li>
+
+        <li>
+          <article class="module-card">
+            <h3 class="module-heading">
+              <span class="module-number">Module 2</span>
+              <span class="module-title">Protecting Yourself Day to Day</span>
+            </h3>
+            <p class="module-description">Simple everyday habits to keep your personal information, bank details and online payments safe.</p>
+            <a href="module.html?m=2" class="module-link" aria-label="Start learning Module 2: Protecting Yourself Day to Day">Start Learning</a>
+          </article>
+        </li>
+
+        <li>
+          <article class="module-card">
+            <h3 class="module-heading">
+              <span class="module-number">Module 3</span>
+              <span class="module-title">What to Do If It Happens</span>
+            </h3>
+            <p class="module-description">Clear, calm steps to take if you think you have been scammed, including how to contact your bank and where to report it.</p>
+            <a href="module.html?m=3" class="module-link" aria-label="Start learning Module 3: What to Do If It Happens">Start Learning</a>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ========== Footer ========== -->
+  <footer class="site-footer">
+    <p>Clear Sight Finance is an educational website about financial safety. It is for learning only and does not give personal financial advice. If you are worried about your account, contact your bank using the phone number on the back of your card.</p>
+    <p>Audio narration uses your web browser's built-in speech feature, so the voice may sound different on different devices.</p>
+  </footer>
+
+  <!-- Scripts: settings first (contrast and text size), then the main app -->
+  <script src="js/settings.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
