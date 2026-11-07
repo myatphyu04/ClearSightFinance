@@ -5,8 +5,16 @@
 
    module.html?m=2  ->  loads content/module2.json  ->  fills the page
 
+   The lesson under "What you'll learn" is also prepared for narration:
+   every heading and sentence gets class "lesson-sentence" and a number
+   (data-sentence="0", "1", ...), in reading order.
+
    When everything is displayed, it sends a "clearsight:moduleloaded"
-   event so player.js and quiz.js can start working with the same data.
+   event on document with:
+
+     event.detail.moduleData      – the whole JSON object (quiz.js uses .quiz)
+     event.detail.narrationItems  – [{ text, element }, ...] in reading order
+                                    (player.js speaks .text and highlights .element)
    ========================================================================== */
 
 // Everything sits inside this function so the names below don't become
@@ -34,7 +42,7 @@
   }
 
 
-  // ---- 2. Load the JSON file -----------------------------------------------
+  // ---- 2. Load and check the JSON file -------------------------------------
 
   // Fetches content/moduleN.json and returns the data inside it.
   // Throws an error if the file can't be loaded or isn't valid JSON.
@@ -76,17 +84,14 @@
     });
     if (!sectionsAreValid) return false;
 
-    if (!Array.isArray(data.transcript) || data.transcript.length === 0) return false;
-    if (!data.transcript.every(isText)) return false;
-
-    // quiz.js checks the questions in detail; here we only make sure the list exists
-    if (!Array.isArray(data.quiz)) return false;
+    // quiz.js checks each question in detail; here we only make sure there are some
+    if (!Array.isArray(data.quiz) || data.quiz.length === 0) return false;
 
     return true;
   }
 
 
-  // ---- 3. Display the module -----------------------------------------------
+  // ---- 3. Display the module heading ---------------------------------------
 
   function displayModuleInfo(data) {
     document.getElementById("module-number").textContent = "Module " + data.id;
@@ -97,54 +102,105 @@
     document.title = "Module " + data.id + ": " + data.title + " – " + SITE_NAME;
   }
 
+
+  // ---- 4. Prepare text for narration ---------------------------------------
+
+  // Splits a paragraph into sentences at ".", "!" or "?" followed by a space.
+  // "Stop. Check first!" -> ["Stop.", "Check first!"]
+  // Text without an ending full stop is kept as the last sentence.
+  function splitIntoSentences(text) {
+    const matches = text.match(/[^.!?]+(?:[.!?]+|$)/g) || [];
+
+    return matches
+      .map(function (sentence) { return sentence.trim(); })
+      .filter(function (sentence) { return sentence !== ""; });
+  }
+
+  // Marks an element as something the player will read, and records it.
+  // Its data-sentence number is its position in narrationItems, so
+  // narrationItems[5] always matches the element with data-sentence="5".
+  function addNarrationItem(element, narrationItems) {
+    element.classList.add("lesson-sentence");
+    element.setAttribute("data-sentence", String(narrationItems.length));
+
+    narrationItems.push({
+      text: element.textContent,
+      element: element
+    });
+  }
+
+  // Fills a <p> or <li> with one <span> per sentence, separated by spaces,
+  // so it still reads as normal text.
+  function appendSentences(parent, text, narrationItems) {
+    const sentences = splitIntoSentences(text);
+
+    sentences.forEach(function (sentence, index) {
+      if (index > 0) {
+        parent.appendChild(document.createTextNode(" "));
+      }
+
+      const span = document.createElement("span");
+      span.textContent = sentence;
+      parent.appendChild(span);
+      addNarrationItem(span, narrationItems);
+    });
+  }
+
+
+  // ---- 5. Display the lesson -----------------------------------------------
+
   // Builds one lesson section:
   //   <section class="lesson-section">
-  //     <h3>Heading</h3>
-  //     <p>Paragraph</p> ...
+  //     <h3 class="lesson-sentence" data-sentence="0">Heading</h3>
+  //     <p><span class="lesson-sentence" data-sentence="1">Sentence.</span> ...</p>
   //     <div class="safety-tip">
-  //       <h4 class="safety-tip-heading">Safety tips</h4>
-  //       <ul class="safety-tip-list"><li>Tip</li> ...</ul>
+  //       <h4 class="safety-tip-heading lesson-sentence" data-sentence="…">Safety tip</h4>
+  //       <ul class="safety-tip-list"><li><span class="lesson-sentence" …>Tip.</span></li></ul>
   //     </div>
   //   </section>
   // The headings are h3 and h4 because they sit under the "What you'll learn" h2.
-  function createLessonSection(section) {
+  function createLessonSection(section, narrationItems) {
     const sectionElement = document.createElement("section");
     sectionElement.className = "lesson-section";
 
+    // The heading stays a real <h3>; the whole heading is one narration item
     const heading = document.createElement("h3");
     heading.textContent = section.heading;
     sectionElement.appendChild(heading);
+    addNarrationItem(heading, narrationItems);
 
     section.paragraphs.forEach(function (text) {
       const paragraph = document.createElement("p");
-      paragraph.textContent = text;
+      appendSentences(paragraph, text, narrationItems);
       sectionElement.appendChild(paragraph);
     });
 
     // Only add a tips box if this section has tips
     if (section.tips.length > 0) {
-      sectionElement.appendChild(createSafetyTips(section.tips));
+      sectionElement.appendChild(createSafetyTips(section.tips, narrationItems));
     }
 
     return sectionElement;
   }
 
-  function createSafetyTips(tips) {
+  function createSafetyTips(tips, narrationItems) {
     const tipBox = document.createElement("div");
     tipBox.className = "safety-tip";
 
-    // A visible text label, so the tips don't rely on colour or an icon
+    // A visible text label, so the tips don't rely on colour or an icon.
+    // It is also read aloud, so listeners know a tip is starting.
     const label = document.createElement("h4");
     label.className = "safety-tip-heading";
     label.textContent = tips.length === 1 ? "Safety tip" : "Safety tips";
     tipBox.appendChild(label);
+    addNarrationItem(label, narrationItems);
 
     const list = document.createElement("ul");
     list.className = "safety-tip-list";
 
     tips.forEach(function (text) {
       const item = document.createElement("li");
-      item.textContent = text;
+      appendSentences(item, text, narrationItems);
       list.appendChild(item);
     });
 
@@ -152,38 +208,22 @@
     return tipBox;
   }
 
+  // Shows every section and returns the narration items in reading order
   function displayLessonSections(sections) {
     const container = document.getElementById("lesson-content");
+    const narrationItems = [];
+
     container.textContent = "";   // clear anything already there
 
     sections.forEach(function (section) {
-      container.appendChild(createLessonSection(section));
+      container.appendChild(createLessonSection(section, narrationItems));
     });
-  }
 
-  // Puts each sentence in its own span, numbered from 0:
-  //   <span class="transcript-sentence" data-sentence="0">First sentence.</span>
-  // player.js uses the number to highlight the sentence being spoken.
-  function displayTranscript(sentences) {
-    const container = document.getElementById("transcript-content");
-    container.textContent = "";
-
-    sentences.forEach(function (text, index) {
-      // A space between sentences, so they don't run together
-      if (index > 0) {
-        container.appendChild(document.createTextNode(" "));
-      }
-
-      const span = document.createElement("span");
-      span.className = "transcript-sentence";
-      span.setAttribute("data-sentence", String(index));
-      span.textContent = text;
-      container.appendChild(span);
-    });
+    return narrationItems;
   }
 
 
-  // ---- 4. Navigation -------------------------------------------------------
+  // ---- 6. Navigation -------------------------------------------------------
 
   // Shows Previous/Next only when that module exists, and sets their links
   function updateModuleNavigation(moduleNumber) {
@@ -229,7 +269,7 @@
   }
 
 
-  // ---- 5. Loading and error messages ---------------------------------------
+  // ---- 7. Loading and error messages ---------------------------------------
 
   function showLoading() {
     const loading = document.getElementById("module-loading");
@@ -283,7 +323,7 @@
   }
 
 
-  // ---- 6. Start-up ---------------------------------------------------------
+  // ---- 8. Start-up ---------------------------------------------------------
 
   async function initModulePage() {
     const moduleNumber = getModuleNumber();
@@ -306,16 +346,19 @@
 
       // Everything has been checked, so the page can be filled in
       displayModuleInfo(moduleData);
-      displayLessonSections(moduleData.sections);
-      displayTranscript(moduleData.transcript);
+      const narrationItems = displayLessonSections(moduleData.sections);
       updateModuleNavigation(moduleNumber);
       highlightCurrentNavLink(moduleNumber);
       hideLoading();
 
-      // Tell player.js and quiz.js the module is ready, and give them its data
+      // Tell player.js and quiz.js the module is ready.
+      // player.js uses narrationItems; quiz.js uses moduleData.quiz.
       document.dispatchEvent(
         new CustomEvent("clearsight:moduleloaded", {
-          detail: moduleData
+          detail: {
+            moduleData: moduleData,
+            narrationItems: narrationItems
+          }
         })
       );
     } catch (error) {
