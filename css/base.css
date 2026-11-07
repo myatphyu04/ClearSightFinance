@@ -13,7 +13,9 @@
      8. Welcome section
      9. Learning modules
     10. Footer
-    11. Responsive layout (media queries)
+    11. Quiz (module page)
+    12. Module navigation (module page)
+    13. Responsive layout (media queries)
 
    The styles are "mobile-first": the main rules are written for small
    screens, and the media queries at the bottom adjust the layout as the
@@ -127,6 +129,12 @@ a:hover {
 /* Buttons don't use the page font by default, so make them match */
 button {
   font: inherit;
+}
+
+/* Anything with the hidden attribute stays hidden, even if a class below
+   gives it a display value (e.g. the Previous/Next links and Try Again) */
+[hidden] {
+  display: none !important;
 }
 
 main {
@@ -504,7 +512,195 @@ button:focus-visible {
 }
 
 
-/* 11. Responsive layout
+/* 11. Quiz (module page)
+   --------------------------------------------------------------------------
+   The questions are built by quiz.js. Each one is a <fieldset> card with
+   its radio buttons and, after checking, a feedback box. */
+
+.quiz-questions {
+  display: grid;
+  gap: 1.25rem;   /* space between question cards */
+  margin-top: 1.5rem;
+}
+
+.quiz-question {
+  min-width: 0;   /* fieldsets otherwise refuse to shrink on narrow screens */
+  margin: 0;
+  padding: 1rem 1.25rem 1.25rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+}
+
+.quiz-question legend {
+  padding: 0 0.375rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--heading-color);
+}
+
+.quiz-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding-block: 0.375rem;
+}
+
+/* Larger radio buttons in the site's accent colour */
+.quiz-option input[type="radio"] {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.2em 0 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.quiz-option label {
+  cursor: pointer;
+}
+
+/* Feedback under each question; the words "Correct!" / "Not quite."
+   carry the meaning, the coloured edge is extra */
+.quiz-question-feedback {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--accent-light);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-small);
+}
+
+.quiz-question-feedback.quiz-incorrect {
+  border-left-color: var(--highlight);
+}
+
+.quiz-question-feedback p {
+  margin-bottom: 0.5rem;
+}
+
+.quiz-question-feedback p:last-child {
+  margin-bottom: 0;
+}
+
+/* Check Answers / Try Again row: 24px below the last question card,
+   left-aligned with the quiz, wrapping on narrow screens */
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.quiz-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;   /* at least 44px tall, easy to tap */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent-text);
+  background-color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+}
+
+.quiz-button:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+/* Greyed out until quiz.js is ready, and after answers are checked */
+.quiz-button:disabled {
+  color: var(--text-color);
+  background-color: var(--border-color);
+  border-color: var(--border-color);
+  cursor: not-allowed;
+}
+
+/* Overall score message (aria-live area). The space is on the message
+   itself, so the empty area takes up no room. */
+.quiz-feedback p {
+  margin: 1.25rem 0 0;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+
+/* 12. Module navigation (module page)
+   --------------------------------------------------------------------------
+   Phones: the links stack as full-width buttons in reading order.
+   Wider screens (see section 13): one row, Previous on the left,
+   Back to Home in the centre and Next on the right. */
+
+.module-nav {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.module-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius-small);
+}
+
+/* Previous: lighter outlined button */
+.module-nav-previous {
+  color: var(--accent-dark);
+  background-color: var(--card-bg);
+  border-color: var(--accent);
+}
+
+.module-nav-previous:hover {
+  text-decoration: underline;
+  background-color: var(--accent-light-hover);
+  border-color: var(--accent-dark);
+}
+
+/* Next: solid teal button, the main way forward */
+.module-nav-next {
+  color: var(--accent-text);
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.module-nav-next:hover {
+  color: var(--accent-text);
+  text-decoration: underline;
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+/* Back to Home: a plain underlined link, still a comfortable size to tap */
+.module-nav-home {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.module-nav-home:hover {
+  text-decoration-thickness: 3px;
+}
+
+
+/* 13. Responsive layout
    --------------------------------------------------------------------------
    The rules above are for phones. Each media query below adds changes once
    the screen is at least a certain width. "em" breakpoints follow the
@@ -525,6 +721,34 @@ button:focus-visible {
 
   .nav-link {
     border-color: transparent;
+  }
+}
+
+/* Module navigation in one row (about 640px and up).
+   Each link has a fixed column, so Back to Home stays centred even when
+   Previous or Next is hidden (Module 1 and Module 3). */
+@media (min-width: 40em) {
+  .module-nav {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .module-nav-previous {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .module-nav-home {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .module-nav-next {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
   }
 }
 
