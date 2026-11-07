@@ -360,10 +360,11 @@ button:focus-visible {
   border-radius: 2px;
 }
 
-/* Keep lines to a comfortable reading length (about 65 characters) */
+/* Limit line length (about 85 characters) so text uses the space without
+   becoming too long to read comfortably */
 .welcome p,
 .welcome-list {
-  max-width: 65ch;
+  max-width: 100%;
 }
 
 .welcome-intro {
@@ -397,7 +398,7 @@ button:focus-visible {
 }
 
 .modules > p {
-  max-width: 65ch;
+  max-width: 100%;
   margin-bottom: 1.5rem;
 }
 
@@ -494,8 +495,8 @@ button:focus-visible {
 }
 
 .site-footer p {
-  max-width: 65ch;
-  margin-inline: auto;
+  max-width: 100%;
+  margin-inline: 0;
 }
 
 .site-footer p:last-child {
