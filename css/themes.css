@@ -105,9 +105,22 @@ html.high-contrast select:focus-visible {
   outline-width: 4px;
 }
 
-/* Skip link: black text on yellow (base.css would make it yellow on yellow) */
+/* Skip link: black text on yellow (base.css would make it yellow on yellow).
+   Its yellow focus outline sits on the black header. */
 html.high-contrast .skip-link {
-  color: #FFFFFF;
+  color: #000000;
+}
+
+/* Keyboard Help dialog: a thicker yellow border marks its edge, and a
+   near-black backdrop dims the yellow page text behind it so the two
+   don't compete. Text, keys and the Close button use the theme variables. */
+html.high-contrast .keyboard-dialog {
+  border-width: 3px;
+  box-shadow: none;
+}
+
+html.high-contrast .keyboard-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 /* Current page in the menu: black on yellow with an underline,
