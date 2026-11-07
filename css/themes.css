@@ -7,6 +7,7 @@
      2. High contrast: extra rules
      3. Text size: normal, large and extra-large
      4. Text size: layout adjustments
+     5. Windows high contrast (forced colours)
 
    How it works:
    settings.js (added later) puts classes on the <html> element, e.g.
@@ -55,7 +56,27 @@ html.high-contrast {
 
   /* Other */
   --highlight: #FFFF00;
+  --highlight-light: #000000;      /* "Not quite." feedback background */
   --border-color: #FFFF00;
+
+  /* Disabled buttons and menus: black with yellow text and a dashed
+     yellow border, clearly different from the solid yellow buttons */
+  --disabled-bg: #000000;
+  --disabled-text: #FFFF00;
+  --disabled-border: #FFFF00;
+
+  /* Sentence being read aloud: black text on yellow, the reverse of the
+     surrounding yellow-on-black text */
+  --sentence-highlight-bg: #FFFF00;
+  --sentence-highlight-text: #000000;
+  --sentence-highlight-line: #000000;
+  /* A slightly wider black gap around the yellow block, so it never
+     touches the yellow letters on the lines above and below or the
+     words beside it */
+  --sentence-highlight-line-width: 3px;
+
+  /* Quiz radio buttons: yellow ring (a yellow dot when selected) */
+  --radio-border: #FFFF00;
 
   /* Focus outlines are yellow everywhere */
   --focus-color: #FFFF00;
@@ -76,9 +97,11 @@ html.high-contrast .site-header {
   border-bottom: 2px solid var(--border-color);
 }
 
-/* Thicker focus outline */
+/* Thicker focus outline (links, buttons, radio buttons and the speed menu) */
 html.high-contrast a:focus-visible,
-html.high-contrast button:focus-visible {
+html.high-contrast button:focus-visible,
+html.high-contrast input:focus-visible,
+html.high-contrast select:focus-visible {
   outline-width: 4px;
 }
 
@@ -96,9 +119,29 @@ html.high-contrast .nav-link[aria-current="page"] {
   text-decoration-color: #000000;
 }
 
-/* Cards: thicker yellow border */
-html.high-contrast .module-card {
+/* Cards: thicker yellow border (home page and module page) */
+html.high-contrast .module-card,
+html.high-contrast .audio-player,
+html.high-contrast .lesson-section,
+html.high-contrast .quiz-question {
   border-width: 2px;
+}
+
+/* Boxes inside cards are black on black, so give them a full yellow
+   border as well as their thicker left edge */
+html.high-contrast .safety-tip,
+html.high-contrast .quiz-question-feedback {
+  border: 2px solid var(--border-color);
+  border-left-width: 6px;
+}
+
+html.high-contrast .audio-status {
+  border: 2px solid var(--border-color);
+}
+
+/* Quiz answers: the light-teal hover becomes black, so use dark grey */
+html.high-contrast .quiz-question:not(:disabled) .quiz-option:hover {
+  background-color: #333333;
 }
 
 /* Card containing the focused button: an even thicker border */
@@ -107,20 +150,13 @@ html.high-contrast .module-card:focus-within {
 }
 
 /* "Module 1" badge: yellow outline instead of a light background */
-html.high-contrast .module-number {
+html.high-contrast .module-number,
+html.high-contrast .module-intro-number {
   color: #FFFF00;
   border: 2px solid #FFFF00;
 }
 
-/* Disabled quiz button: base.css would make it yellow on yellow.
-   Black with a dashed yellow border looks clearly different from the
-   solid yellow buttons that can be pressed. */
-html.high-contrast .quiz-button:disabled {
-  color: #FFFF00;
-  background-color: #000000;
-  border-color: #FFFF00;
-  border-style: dashed;
-}
+/* Disabled audio and quiz buttons use the --disabled-… colours above */
 
 /* Summary of the button states in high contrast (all set via variables):
    - Normal:   black, yellow text, yellow border
@@ -182,5 +218,35 @@ html.text-extra-large .module-list {
 @media (max-width: 29.99em) {
   html.text-extra-large .nav-list {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* 5. Windows high contrast (forced colours)
+   --------------------------------------------------------------------------
+   Some people use the operating system's own high-contrast colours
+   (e.g. Windows "Contrast themes"). The browser then replaces page colours
+   and removes shadows and background images. This would hide the CSS-drawn
+   radio dot, the speed-menu arrow and the read-aloud highlight, so:
+   - radio buttons and the speed menu go back to the browser's own look;
+   - the highlight uses the system's own highlight colours. */
+
+@media (forced-colors: active) {
+  .quiz-option input[type="radio"],
+  .audio-speed-select {
+    -webkit-appearance: auto;
+    appearance: auto;
+  }
+
+  .audio-speed-select {
+    padding-right: 1rem;
+    background-image: none;
+  }
+
+  .lesson-sentence.is-current {
+    forced-color-adjust: none;
+    color: HighlightText;
+    background-color: Highlight;
+    box-shadow: 0 0 0 var(--sentence-highlight-pad) Highlight;
   }
 }
