@@ -1,0 +1,95 @@
+{
+  "id": 2,
+  "title": "Protecting Yourself Day to Day",
+  "introduction": "In this module, you will learn simple everyday habits to protect your bank details, passwords, online payments and personal information.",
+  "sections": [
+    {
+      "heading": "Keeping your banking details safe",
+      "paragraphs": [
+        "Your banking details and security information help keep your money safe. They include your card number, your PIN, your online banking password and one-time security codes. A one-time security code is a short number your bank sends by text or shows in its app, to confirm that it is really you.",
+        "Your bank may sometimes ask you to confirm some details, for example when you call them. But you should never share your PIN, your full password or a one-time code with someone who contacts you unexpectedly, even if they say they are from your bank. To manage your money online, use your bank's official app or type its website address yourself."
+      ],
+      "tips": [
+        "If someone contacts you and asks for a security code, end the conversation and contact your bank using the number on the back of your card.",
+        "Only download your bank's app from your phone's official app store, or from a link on your bank's official website."
+      ]
+    },
+    {
+      "heading": "Creating strong passwords",
+      "paragraphs": [
+        "Passwords protect your online accounts, such as email, shopping and banking. A strong password is long and hard for other people to guess. One easy way to make one is to join three random words together, such as kettle, garden and violin. Using a different password for each important account is safer, because if one password is found out, your other accounts stay protected. A password manager is a secure app that can create strong passwords and remember them for you.",
+        "Two-factor authentication adds an extra security check when you sign in. As well as your password, you might enter a code sent to your phone, or approve the sign-in on a device you trust. These codes are only for you, so never share an unexpected code with someone who calls or messages you."
+      ],
+      "tips": [
+        "Avoid passwords that are easy to guess, such as your name, a birthday or the word password.",
+        "Turn on two-factor authentication for your email and banking if you can. It is sometimes called two-step verification."
+      ]
+    },
+    {
+      "heading": "Staying safe when shopping or paying online",
+      "paragraphs": [
+        "Before you buy something online, check that you are using the genuine shop's website or app. Type the address yourself or use the official app, rather than following a payment link from an unexpected message. Your web browser may show a padlock symbol or say that the connection is secure. This means the connection is private, but it does not prove that the seller is honest.",
+        "For example, you might see an advert on social media for headphones at a very low price. Before paying, search for reviews of the seller, check the total cost and delivery details, and pay by card where possible, as this can give you more protection than a bank transfer."
+      ],
+      "tips": [
+        "Before you confirm a payment, check the amount and the name of who you are paying.",
+        "Check your bank statements or banking app regularly, and tell your bank straight away if you see a payment you do not recognise."
+      ]
+    },
+    {
+      "heading": "Protecting your personal information",
+      "paragraphs": [
+        "Details such as your address, date of birth and account numbers can be used to pretend to be you. Share them only when you need to, and only with organisations you have checked. Be careful about posting personal details online, such as your birthday, your home address or when you are away on holiday.",
+        "Simple habits make a big difference. Install updates on your phone, tablet and computer when they are offered, because they often fix security problems. Lock your devices with a PIN, password, fingerprint or face recognition when you are not using them. If anyone asks for your information unexpectedly, pause and check who they are first."
+      ],
+      "tips": [
+        "Set your phone and computer to lock automatically after a short time.",
+        "If you are unsure whether a request is genuine, contact the organisation using contact details you have found yourself."
+      ]
+    }
+  ],
+  "transcript": [
+    "Welcome to Module 2, Protecting Yourself Day to Day.",
+    "Your banking details and security information help keep your money safe.",
+    "These include your card number, your PIN, your online banking password and one-time security codes.",
+    "A one-time security code is a short number your bank sends to confirm that it is really you.",
+    "Never share your PIN, your full password or a security code with someone who contacts you unexpectedly, even if they say they are from your bank.",
+    "To manage your money online, use your bank's official app or type its website address yourself.",
+    "Strong passwords help protect your online accounts.",
+    "A good password is long and hard to guess, such as three random words joined together.",
+    "Using a different password for each important account helps protect your other accounts if one password is discovered.",
+    "A password manager is a secure app that can create and remember strong passwords for you.",
+    "Two-factor authentication adds an extra check when you sign in, such as a code sent to your phone.",
+    "Never share a sign-in verification code with someone who calls or messages you, even if they claim to be from your bank.",
+    "When shopping online, use the genuine shop's website or app rather than a link from an unexpected message.",
+    "A padlock symbol means the connection is private, but it does not prove that the seller is honest.",
+    "For example, if you see headphones advertised at a very low price, check reviews of the seller before you pay.",
+    "Always check the amount and who you are paying before you confirm a payment.",
+    "Check your bank statements regularly, and tell your bank straight away about any payment you do not recognise.",
+    "Share personal details such as your address and date of birth only when you need to, and be careful about posting them online.",
+    "Install updates on your devices, and lock them when you are not using them.",
+    "If someone asks for your information unexpectedly, pause and check who they are first."
+  ],
+  "quiz": [
+    {
+      "question": "Someone phones saying they are from your bank. They ask you to read out a security code that has just been sent to your phone. What should you do?",
+      "options": [
+        "Read out the code, because the caller already knows your name.",
+        "Do not share the code, end the call and contact your bank using the number on the back of your card.",
+        "Send the code by text message instead of saying it aloud."
+      ],
+      "correctIndex": 1,
+      "explanation": "Security codes are only for you, and sharing one could let someone into your account. Ending the call and contacting your bank using a number you trust lets you check safely."
+    },
+    {
+      "question": "Which habit helps protect you when shopping or paying online?",
+      "options": [
+        "Clicking a payment link in an unexpected text message to get a discount.",
+        "Trusting any website that shows a padlock symbol.",
+        "Checking the amount and who you are paying before you confirm a payment."
+      ],
+      "correctIndex": 2,
+      "explanation": "Checking the payment details helps you spot a wrong amount or an unfamiliar seller before your money leaves your account. A padlock only means the connection is private, not that the seller is genuine."
+    }
+  ]
+}
