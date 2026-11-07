@@ -1,0 +1,176 @@
+/* ==========================================================================
+   Clear Sight Finance – themes.css
+   Accessibility themes: high contrast and text size.
+
+   Contents:
+     1. High contrast: colour variables
+     2. High contrast: extra rules
+     3. Text size: normal, large and extra-large
+     4. Text size: layout adjustments
+
+   How it works:
+   settings.js (added later) puts classes on the <html> element, e.g.
+
+     <html lang="en" class="high-contrast text-large">
+
+   - "high-contrast" switches the colours.
+   - "text-normal", "text-large" or "text-extra-large" sets the text size.
+
+   The two settings use different classes and change different things
+   (colours vs. size), so any combination works.
+
+   This file loads after base.css, so its rules win when both set the
+   same thing.
+   ========================================================================== */
+
+
+/* 1. High contrast: colour variables
+   --------------------------------------------------------------------------
+   base.css builds every colour from variables such as var(--page-bg).
+   Giving those variables new values here recolours the whole site,
+   including future module pages that use the same variables.
+
+   Contrast against black: yellow 19.6:1, white 21:1. */
+
+html.high-contrast {
+  /* Backgrounds */
+  --page-bg: #000000;
+  --card-bg: #000000;
+  --header-bg: #000000;
+  --header-hover-bg: #333333;      /* dark grey hover behind yellow text */
+  --header-border: #FFFF00;
+
+  /* Text */
+  --text-color: #FFFF00;
+  --heading-color: #FFFF00;
+  --header-text: #FFFF00;
+
+  /* Accents */
+  --accent: #FFFF00;               /* button fill and borders */
+  --accent-dark: #FFFFFF;          /* links and hover fills */
+  --accent-light: #000000;         /* toolbar background */
+  --accent-light-hover: #333333;   /* toolbar button hover */
+  --accent-light-border: #FFFF00;  /* line under the toolbar */
+  --accent-text: #000000;          /* text on yellow or white buttons */
+
+  /* Other */
+  --highlight: #FFFF00;
+  --border-color: #FFFF00;
+
+  /* Focus outlines are yellow everywhere */
+  --focus-color: #FFFF00;
+  --focus-color-on-dark: #FFFF00;
+
+  /* Dark browser scrollbars and form controls */
+  color-scheme: dark;
+}
+
+
+/* 2. High contrast: extra rules
+   --------------------------------------------------------------------------
+   Changing variables is not enough in a few places, mostly where two
+   things would both turn yellow and look the same. */
+
+/* Separate the header from the toolbar now that both are black */
+html.high-contrast .site-header {
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Thicker focus outline */
+html.high-contrast a:focus-visible,
+html.high-contrast button:focus-visible {
+  outline-width: 4px;
+}
+
+/* Skip link: black text on yellow (base.css would make it yellow on yellow) */
+html.high-contrast .skip-link {
+  color: #FFFFFF;
+}
+
+/* Current page in the menu: black on yellow with an underline,
+   so it stands apart from the other yellow links */
+html.high-contrast .nav-link.active,
+html.high-contrast .nav-link[aria-current="page"] {
+  color: #000000;
+  background-color: #FFFF00;
+  text-decoration-color: #000000;
+}
+
+/* Cards: thicker yellow border */
+html.high-contrast .module-card {
+  border-width: 2px;
+}
+
+/* Card containing the focused button: an even thicker border */
+html.high-contrast .module-card:focus-within {
+  box-shadow: 0 0 0 2px var(--border-color);
+}
+
+/* "Module 1" badge: yellow outline instead of a light background */
+html.high-contrast .module-number {
+  color: #FFFF00;
+  border: 2px solid #FFFF00;
+}
+
+/* Summary of the button states in high contrast (all set via variables):
+   - Normal:   black, yellow text, yellow border
+   - Hover:    dark grey, white border
+   - Selected: yellow, black text
+   - Selected and hovered: white, black text
+   - Focus:    4px yellow outline with a black gap
+   Start Learning: yellow with black text, turning white and underlined on hover. */
+
+
+/* 3. Text size
+   --------------------------------------------------------------------------
+   Sizes in base.css use "rem", which is relative to the <html> font size.
+   Changing the <html> font size therefore scales all text, spacing and
+   buttons together, without zoom or transforms.
+
+   Percentages build on the user's browser setting rather than replacing it. */
+
+html.text-normal {
+  font-size: 100%;
+}
+
+html.text-large {
+  font-size: 125%;
+}
+
+html.text-extra-large {
+  font-size: 150%;
+}
+
+
+/* 4. Text size: layout adjustments
+   --------------------------------------------------------------------------
+   The media queries in base.css respond to the screen width, not the
+   chosen text size. With bigger text, three cards side by side would get
+   too narrow, so they stay stacked until the screen is wider. */
+
+html.text-large .module-list,
+html.text-extra-large .module-list {
+  grid-template-columns: 1fr;
+}
+
+/* Large text: three cards from about 1120px wide */
+@media (min-width: 70em) {
+  html.text-large .module-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Extra-large text: three cards from about 1344px wide */
+@media (min-width: 84em) {
+  html.text-extra-large .module-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Extra-large text on small phones: one menu link per row,
+   so words like "Module 1" are not squeezed */
+@media (max-width: 29.99em) {
+  html.text-extra-large .nav-list {
+    grid-template-columns: 1fr;
+  }
+}
