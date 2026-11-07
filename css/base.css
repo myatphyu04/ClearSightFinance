@@ -20,6 +20,7 @@
     15. Quiz
     16. Module navigation
     17. Responsive layout (media queries)
+    18. Keyboard Help dialog
 
    The styles are "mobile-first": the main rules are written for small
    screens, and the media queries at the bottom adjust the layout as the
@@ -183,24 +184,35 @@ main,
 
 /* 4. Skip link
    --------------------------------------------------------------------------
-   Hidden just above the top of the screen until it receives keyboard
-   focus, then slides into view. Screen readers can always reach it. */
+   The first thing Tab reaches on every page. It is moved just above the
+   top of the screen until it receives keyboard focus, then appears over
+   the header (no animation). Screen readers can always reach it.
+
+   It sits a little below the top edge when shown, so its whole focus
+   outline is visible. The high z-index keeps it above the header. */
 
 .skip-link {
   position: absolute;
-  top: 0;
+  top: 0.5rem;
   left: var(--gutter);
-  z-index: 100;
+  z-index: 1000;
   padding: 0.75rem 1.25rem;
   font-weight: 700;
   color: var(--heading-color);
   background-color: var(--highlight);
-  border-radius: 0 0 var(--radius-small) var(--radius-small);
-  transform: translateY(-100%);
+  border-radius: var(--radius-small);
+  transform: translateY(calc(-100% - 1rem));   /* fully off the top of the screen */
 }
 
 .skip-link:focus {
-  transform: translateY(0);
+  transform: none;
+}
+
+/* <main tabindex="-1"> receives focus from the skip link. It is not a
+   control, so it gets no outline (the same approach as GOV.UK); the next
+   Tab goes to the first link or button inside it. */
+main:focus {
+  outline: none;
 }
 
 
@@ -587,11 +599,13 @@ select:focus-visible {
 
 /* 12. Module page: buttons
    --------------------------------------------------------------------------
-   Play, Pause, Resume, Stop, Check Answers and Try Again all share one
-   teal button style, matching "Start Learning" on the home page. */
+   Play, Pause, Resume, Stop, Check Answers, Try Again and the Close button
+   in the Keyboard Help dialog all share one teal button style, matching
+   "Start Learning" on the home page. */
 
 .audio-button,
-.quiz-button {
+.quiz-button,
+.dialog-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -608,7 +622,8 @@ select:focus-visible {
 }
 
 .audio-button:hover:not(:disabled),
-.quiz-button:hover:not(:disabled) {
+.quiz-button:hover:not(:disabled),
+.dialog-button:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
   background-color: var(--accent-dark);
@@ -1126,4 +1141,102 @@ h4.lesson-sentence {
   .module-list {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+
+/* 18. Keyboard Help dialog
+   --------------------------------------------------------------------------
+   A native <dialog> opened by keyboard.js with showModal(). The browser
+   centres it, shows it above everything else, keeps keyboard focus inside
+   it and closes it with Escape. Used on every page.
+
+   Sizes are in rem, so the dialog grows with A+ and A++. It is never wider
+   or taller than the screen (minus a small margin) and scrolls inside
+   itself when the text does not fit. */
+
+.keyboard-dialog {
+  width: min(36rem, 100% - 2rem);
+  max-width: calc(100% - 2rem);
+  max-height: calc(100% - 2rem);
+  margin: auto;
+  padding: 1.25rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;   /* scrolling the dialog doesn't scroll the page */
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: 0 0.5rem 2rem rgba(23, 45, 70, 0.3);
+}
+
+/* Dims the page behind the dialog. Written as a colour, not a variable,
+   because some browsers don't pass variables to ::backdrop. */
+.keyboard-dialog::backdrop {
+  background-color: rgba(23, 45, 70, 0.6);   /* navy, partly see-through */
+}
+
+.keyboard-dialog-title {
+  margin-bottom: 0.5rem;
+}
+
+/* The heading only receives focus so screen readers start reading at the
+   top. It is not a control, so no outline; Tab goes on to Close. */
+.keyboard-dialog-title:focus {
+  outline: none;
+}
+
+/* Key and action list: each row has the key on the left and what it does
+   on the right. When there isn't room (small screens or large text), the
+   action wraps onto its own line under the key. */
+.keyboard-list {
+  margin: 1.25rem 0 0;
+}
+
+.keyboard-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.keyboard-row:last-child {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.keyboard-key {
+  flex: 0 1 8.5rem;
+  margin: 0;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.keyboard-action {
+  flex: 1 1 12rem;
+  margin: 0;
+}
+
+/* Keys drawn like keyboard keys (a thicker bottom edge) */
+.keyboard-key kbd {
+  display: inline-block;
+  padding: 0 0.5rem;
+  font-family: inherit;   /* the browser default is a harder-to-read monospace font */
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--heading-color);
+  background-color: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-bottom-width: 3px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.keyboard-note {
+  margin: 1rem 0 0;
+}
+
+.dialog-actions {
+  margin-top: 1.5rem;
 }
