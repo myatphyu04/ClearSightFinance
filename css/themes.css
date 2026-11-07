@@ -112,6 +112,16 @@ html.high-contrast .module-number {
   border: 2px solid #FFFF00;
 }
 
+/* Disabled quiz button: base.css would make it yellow on yellow.
+   Black with a dashed yellow border looks clearly different from the
+   solid yellow buttons that can be pressed. */
+html.high-contrast .quiz-button:disabled {
+  color: #FFFF00;
+  background-color: #000000;
+  border-color: #FFFF00;
+  border-style: dashed;
+}
+
 /* Summary of the button states in high contrast (all set via variables):
    - Normal:   black, yellow text, yellow border
    - Hover:    dark grey, white border
