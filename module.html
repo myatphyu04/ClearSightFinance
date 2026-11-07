@@ -47,10 +47,16 @@
       <button type="button" class="toolbar-button text-size-button" data-size="large" aria-label="Large text size" aria-pressed="false">A+</button>
       <button type="button" class="toolbar-button text-size-button" data-size="extra-large" aria-label="Extra-large text size" aria-pressed="false">A++</button>
     </div>
+
+    <!-- Hidden until keyboard.js has set up the dialog, so the button never appears without working -->
+    <div class="toolbar-group" hidden>
+      <button type="button" id="keyboard-help-button" class="toolbar-button" aria-haspopup="dialog" aria-controls="keyboard-help-dialog">Keyboard Help</button>
+    </div>
   </section>
 
   <!-- ========== Main content ========== -->
-  <main id="main-content">
+  <!-- tabindex="-1" lets the skip link move keyboard focus here -->
+  <main id="main-content" tabindex="-1">
 
     <!-- Loading and error messages (controlled by app.js) -->
     <p id="module-loading" class="module-message module-loading" aria-live="polite">Loading module…</p>
@@ -138,10 +144,55 @@
     <p>Audio narration uses your web browser's built-in speech feature, so the voice may sound different on different devices.</p>
   </footer>
 
-  <!-- Scripts: settings first, then content loading, audio and quiz -->
+  <!-- ========== Keyboard Help dialog (opened by keyboard.js) ==========
+       A native <dialog>: when opened with showModal() the browser keeps
+       keyboard focus inside it and closes it when Escape is pressed. -->
+  <dialog id="keyboard-help-dialog" class="keyboard-dialog" aria-labelledby="keyboard-help-title">
+    <!-- tabindex="-1" lets keyboard.js put focus here when the dialog opens,
+         so screen readers start reading from the top -->
+    <h2 id="keyboard-help-title" class="keyboard-dialog-title" tabindex="-1">Keyboard navigation</h2>
+    <p>You can use your keyboard to navigate this website without a mouse.</p>
+
+    <!-- Each row: the key (dt) and what it does (dd) -->
+    <dl class="keyboard-list">
+      <div class="keyboard-row">
+        <dt class="keyboard-key"><kbd>Tab</kbd></dt>
+        <dd class="keyboard-action">Move to the next interactive element</dd>
+      </div>
+      <div class="keyboard-row">
+        <dt class="keyboard-key"><kbd>Shift</kbd> + <kbd>Tab</kbd></dt>
+        <dd class="keyboard-action">Move to the previous interactive element</dd>
+      </div>
+      <div class="keyboard-row">
+        <dt class="keyboard-key"><kbd>Enter</kbd></dt>
+        <dd class="keyboard-action">Open a focused link or activate a button</dd>
+      </div>
+      <div class="keyboard-row">
+        <dt class="keyboard-key"><kbd>Space</kbd></dt>
+        <dd class="keyboard-action">Activate a focused button or select a quiz answer</dd>
+      </div>
+      <div class="keyboard-row">
+        <dt class="keyboard-key"><kbd>Arrow keys</kbd></dt>
+        <dd class="keyboard-action">Move between quiz answer options</dd>
+      </div>
+      <div class="keyboard-row">
+        <dt class="keyboard-key"><kbd>Escape</kbd></dt>
+        <dd class="keyboard-action">Close the Keyboard Help dialog</dd>
+      </div>
+    </dl>
+
+    <p class="keyboard-note">Some keyboard controls may depend on your browser settings.</p>
+
+    <div class="dialog-actions">
+      <button type="button" id="keyboard-help-close" class="dialog-button">Close</button>
+    </div>
+  </dialog>
+
+  <!-- Scripts: settings first, then content loading, audio, quiz, then Keyboard Help and the skip link -->
   <script src="js/settings.js" defer></script>
   <script src="js/app.js" defer></script>
   <script src="js/player.js" defer></script>
   <script src="js/quiz.js" defer></script>
+  <script src="js/keyboard.js" defer></script>
 </body>
 </html>
