@@ -146,7 +146,7 @@ These are ideas for future work and are not yet implemented:
 
 ## Live demo
 
-**Live website:** Coming soon
+[Visit Clear Sight Finance](https://myatphyu04.github.io/ClearSightFinance/)
 
 ## Author
 
