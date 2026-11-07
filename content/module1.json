@@ -1,13 +1,12 @@
 {
   "id": 1,
   "title": "Spotting the Scam",
-  "introduction": "In this module, you will learn what financial scams are, how to recognise common warning signs, and how to check suspicious messages before responding.",
+  "introduction": "In this module, you will learn how to recognise common scam warning signs and how to check suspicious messages safely.",
   "sections": [
     {
       "heading": "What is a financial scam?",
       "paragraphs": [
-        "A financial scam is when someone tries to trick you into giving them money or personal information. Personal information includes things like your bank details, passwords and security codes.",
-        "Scammers can contact you by phone, text message, email, social media or through fake websites. Scams can be very convincing, and anyone can be targeted."
+        "A financial scam is when someone tries to trick you into giving them money or personal information, such as your bank details, passwords or security codes. Scammers may contact you by phone, text message, email or social media, or through fake websites. Scams can be very convincing, and anyone can be targeted."
       ],
       "tips": [
         "Your bank will never ask you to share your full password, your PIN or a security code sent to your phone."
@@ -16,56 +15,30 @@
     {
       "heading": "Common warning signs",
       "paragraphs": [
-        "Scam messages often share the same warning signs. Knowing them can help you stop and think before you respond.",
-        "Be careful if someone asks for money or personal details when you were not expecting it, puts pressure on you to act straight away, offers something that sounds too good to be true, or asks you to keep it secret. Not every unexpected message is a scam, but these signs are a good reason to slow down and check."
+        "Scam messages often share the same warning signs. Be careful if someone asks for money or personal details when you were not expecting it, offers something that sounds too good to be true, or asks you to keep it secret. Not every unexpected message is a scam, but these signs are a good reason to slow down."
       ],
       "tips": [
-        "Be suspicious if someone pressures you to act immediately or refuses to let you verify their identity. If someone says you must act right now, that is a reason to pause.",
-        "Be wary of anyone who asks you to keep a conversation secret from your family, friends or bank."
+        "Be wary of anyone who pressures you to act straight away. A genuine organisation will give you time to check."
       ]
     },
     {
       "heading": "People pretending to be trusted organisations",
       "paragraphs": [
-        "Scammers often pretend to be from an organisation you already know, such as your bank, a delivery company or a government department. They may use a familiar name, logo or phone number, but all of these can be copied.",
-        "For example, you might receive a text saying a parcel could not be delivered and asking you to pay a small fee through a link. The link may lead to a fake website that collects your card details."
+        "Scammers often pretend to be from an organisation you trust, such as your bank, a delivery company or a government department. A familiar name or phone number can easily be copied. For example, a text might say your parcel could not be delivered and ask you to pay a small fee through a link to a fake website."
       ],
       "tips": [
-        "Do not use a phone number or link given in a suspicious message. Find the official contact details yourself instead.",
-        "If a caller says they are from your bank, you can hang up and call back using the number on the back of your card. If you can, use a different phone or wait a few minutes before calling."
+        "Do not use a phone number or link given in a suspicious message. Find the official contact details yourself instead."
       ]
     },
     {
       "heading": "How to check a suspicious message",
       "paragraphs": [
-        "If something does not feel right, take a moment before you reply, click or pay. It is always fine to stop and check.",
-        "Do not open links or attachments in a message you are unsure about. Instead, contact the organisation using its official website, its app or a phone number you already trust, such as one printed on a letter or bank statement. If you are still unsure, ask a family member, friend or someone else you trust for help."
+        "If something does not feel right, take a moment before you reply, click or pay. Do not open links or attachments you are unsure about. Instead, contact the organisation using its official website, its app or a phone number you already trust, such as the one on the back of your bank card."
       ],
       "tips": [
-        "A real organisation will not mind you hanging up to check. Taking your time is always the safe choice.",
-        "Asking someone for help is a sensible step, not something to feel embarrassed about."
+        "If you are still unsure, ask a family member or friend for help. Asking for help is a sensible step, not something to feel embarrassed about."
       ]
     }
-  ],
-  "transcript": [
-    "Welcome to Module 1, Spotting the Scam.",
-    "A financial scam is when someone tries to trick you into giving them money or personal information.",
-    "Personal information includes things like your bank details, passwords and security codes.",
-    "Scammers can contact you by phone, text message, email, social media or through fake websites.",
-    "Scams can be very convincing, and anyone can be targeted.",
-    "There are some common warning signs to look and listen out for.",
-    "Be careful if someone asks for money or personal details when you were not expecting it.",
-    "Be careful if a message puts pressure on you to act straight away.",
-    "Be careful if an offer sounds too good to be true, or if you are asked to keep something secret.",
-    "Not every unexpected message is a scam, but these signs are a good reason to slow down.",
-    "Scammers often pretend to be from an organisation you trust, such as your bank, a delivery company or a government department.",
-    "A familiar name or a real-looking phone number does not prove that a message is genuine.",
-    "For example, a text might say your parcel could not be delivered and ask you to pay a small fee through a link.",
-    "That link could lead to a fake website that collects your card details.",
-    "If something does not feel right, pause before you reply, click or pay.",
-    "Do not open links or attachments in a message you are unsure about.",
-    "Instead, contact the organisation using its official website, its app or a phone number you already trust.",
-    "If you are still unsure, ask someone you trust for help, because taking time to check is always the safe choice."
   ],
   "quiz": [
     {
@@ -76,7 +49,7 @@
         "Do not use the link, and check with the delivery company through its official website or app."
       ],
       "correctIndex": 2,
-      "explanation": "Links in unexpected messages can lead to fake websites. Checking through the delivery company's official website or app lets you find out whether the message is genuine without risking your card details."
+      "explanation": "Links in unexpected messages can lead to fake websites. Checking through the delivery company's official website or app lets you find out whether the message is genuine."
     },
     {
       "question": "Which of these is a common warning sign of a scam?",
