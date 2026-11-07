@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Clear Sight Finance learning module with audio narration, a read-along transcript and a short knowledge check.">
+  <!-- app.js will replace this with the module's name, e.g. "Module 1: Spotting the Scam – Clear Sight Finance" -->
+  <title>Learning Module – Clear Sight Finance</title>
+
+  <!-- Stylesheets: base layout first, then colour themes -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/themes.css">
+</head>
+<body>
+
+  <!-- Lets keyboard and screen reader users jump past the header and toolbar -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ========== Header and navigation ========== -->
+  <!-- No link is marked as current here: app.js adds class="active" and
+       aria-current="page" to the link for the module being shown. -->
+  <header class="site-header">
+    <div class="site-branding">
+      <p class="site-title">Clear Sight Finance</p>
+      <p class="site-tagline">Financial Safety Guide</p>
+    </div>
+
+    <nav class="main-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="module.html?m=1" class="nav-link" aria-label="Module 1: Spotting the Scam">Module 1</a></li>
+        <li><a href="module.html?m=2" class="nav-link" aria-label="Module 2: Protecting Yourself Day to Day">Module 2</a></li>
+        <li><a href="module.html?m=3" class="nav-link" aria-label="Module 3: What to Do If It Happens">Module 3</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ========== Accessibility toolbar (handled by settings.js) ========== -->
+  <section class="accessibility-toolbar" aria-label="Accessibility settings">
+    <div class="toolbar-group">
+      <button type="button" id="contrast-toggle" class="toolbar-button" aria-pressed="false">High Contrast</button>
+    </div>
+
+    <div class="toolbar-group" role="group" aria-labelledby="text-size-label">
+      <span id="text-size-label" class="toolbar-label">Text size</span>
+      <button type="button" class="toolbar-button text-size-button active" data-size="normal" aria-label="Normal text size" aria-pressed="true">A</button>
+      <button type="button" class="toolbar-button text-size-button" data-size="large" aria-label="Large text size" aria-pressed="false">A+</button>
+      <button type="button" class="toolbar-button text-size-button" data-size="extra-large" aria-label="Extra-large text size" aria-pressed="false">A++</button>
+    </div>
+  </section>
+
+  <!-- ========== Main content ========== -->
+  <main id="main-content">
+
+    <!-- Loading and error messages (controlled by app.js) -->
+    <p id="module-loading" class="module-message module-loading" aria-live="polite">Loading module…</p>
+    <div id="module-error" class="module-message module-error" role="alert" hidden></div>
+
+    <!-- A. Module introduction -->
+    <section class="module-section module-intro" aria-labelledby="module-title">
+      <p id="module-number" class="module-intro-number">Module</p>
+      <h1 id="module-title">Learning module</h1>
+      <p id="module-introduction" class="module-introduction"></p>
+    </section>
+
+    <!-- B. Audio narration (controlled by player.js using the browser's speech feature) -->
+    <section class="module-section audio-player" aria-labelledby="audio-heading">
+      <h2 id="audio-heading">Listen to the lesson</h2>
+      <p class="section-intro">Press Play to hear the lesson read aloud. The sentence being read is highlighted in the transcript below.</p>
+
+      <div class="audio-controls">
+        <button type="button" id="audio-play" class="audio-button" disabled>Play</button>
+        <button type="button" id="audio-pause" class="audio-button" disabled>Pause</button>
+        <button type="button" id="audio-resume" class="audio-button" disabled>Resume</button>
+        <button type="button" id="audio-stop" class="audio-button" disabled>Stop</button>
+      </div>
+
+      <div class="audio-speed-control">
+        <label for="audio-speed">Playback speed</label>
+        <select id="audio-speed" class="audio-speed-select">
+          <option value="0.75">0.75×</option>
+          <option value="1" selected>1× (normal)</option>
+          <option value="1.25">1.25×</option>
+          <option value="1.5">1.5×</option>
+        </select>
+      </div>
+
+      <p id="audio-status" class="audio-status" aria-live="polite">Ready to play.</p>
+    </section>
+
+    <!-- C. Lesson content (inserted by app.js from the module's JSON file).
+         Expected content: <h3> subheadings, <p> paragraphs, <ul> lists and
+         safety tips such as:
+         <div class="safety-tip"><p><strong>Safety tip:</strong> …</p></div> -->
+    <section class="module-section lesson" aria-labelledby="lesson-heading">
+      <h2 id="lesson-heading">What you'll learn</h2>
+      <div id="lesson-content" class="lesson-content"></div>
+    </section>
+
+    <!-- D. Read-along transcript (sentences inserted by app.js or player.js).
+         Each sentence goes in its own span so player.js can highlight it:
+         <span class="transcript-sentence" data-sentence="0">First sentence.</span>
+         The sentence being spoken also gets the class "is-current".
+         No aria-live here, so screen readers don't re-read it on every change. -->
+    <section class="module-section transcript" aria-labelledby="transcript-heading">
+      <h2 id="transcript-heading">Read along</h2>
+      <p class="section-intro">You can read the full lesson here, with or without the audio. While the lesson is playing, the sentence being read is highlighted.</p>
+      <div id="transcript-content" class="transcript-content"></div>
+    </section>
+
+    <!-- E. Knowledge check (questions inserted by quiz.js).
+         Each question will be a radio-button group:
+         <fieldset class="quiz-question">
+           <legend>Question text</legend>
+           <label><input type="radio" name="question-1" value="a"> Answer A</label>
+           …
+         </fieldset> -->
+    <section class="module-section quiz" aria-labelledby="quiz-heading">
+      <h2 id="quiz-heading">Check your understanding</h2>
+      <p class="section-intro">Answer these short questions to review what you have learned. Choose one answer for each question, then select Check Answers.</p>
+
+      <div id="quiz-questions" class="quiz-questions"></div>
+
+      <div class="quiz-actions">
+        <button type="button" id="quiz-submit" class="quiz-button" disabled>Check Answers</button>
+        <button type="button" id="quiz-retry" class="quiz-button" hidden>Try Again</button>
+      </div>
+
+      <div id="quiz-feedback" class="quiz-feedback" aria-live="polite"></div>
+    </section>
+
+    <!-- F. Module navigation (app.js sets the Previous/Next destinations
+         and shows them only when that module exists) -->
+    <nav class="module-nav" aria-label="Module navigation">
+      <a id="previous-module" class="module-nav-link module-nav-previous" hidden>Previous Module</a>
+      <a href="index.html" class="module-nav-link module-nav-home">Back to Home</a>
+      <a id="next-module" class="module-nav-link module-nav-next" hidden>Next Module</a>
+    </nav>
+
+  </main>
+
+  <!-- ========== Footer ========== -->
+  <footer class="site-footer">
+    <p>Clear Sight Finance is an educational website about financial safety. It is for learning only and does not give personal financial advice. If you are worried about your account, contact your bank using the phone number on the back of your card.</p>
+    <p>Audio narration uses your web browser's built-in speech feature, so the voice may sound different on different devices.</p>
+  </footer>
+
+  <!-- Scripts: settings first, then content loading, audio and quiz -->
+  <script src="js/settings.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/player.js" defer></script>
+  <script src="js/quiz.js" defer></script>
+</body>
+</html>
